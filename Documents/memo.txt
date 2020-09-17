@@ -1,0 +1,19 @@
+アプリ側のファイルのパス取得にはFileManagerクラスを使うと良い。
+FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+ .appendingPathComponent("ranking.json").path
+↓
+file:///var/mobile/Containers/Data/Application/A7B369A4-F652-4172-85D2-B0B9B69F7717/Documents/ranking.json
+
+・String型
+NSHomeDirectory() + "/Library"
+かまたは
+NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+↓
+/var/mobile/Containers/Data/Application/CF80AA8D-CFC2-49D6-B0B7-A798E3575B39/Library
+
+
+アプリケーションバンドルのパス
+アプリケーションバンドルはダウンロード時に取得されるファイル
+guard let path = Bundle.main.path(forResource: "ranking", ofType: "json") else { return }
+↓
+/private/var/containers/Bundle/Application/9B9B085E-0C0A-48EE-A1B8-8A25C1E9B2E0/Flick+.app/ranking.json
